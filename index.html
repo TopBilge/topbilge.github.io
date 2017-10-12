@@ -1,10 +1,154 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
+
 <head>
-	<meta charset="utf-8">
-	<title>欧冠-TopBilge</title>
+    <meta charset="utf-8">
+    <title>ouguan</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+    <script src="jquery.gradientify.min.js"></script>
+    <style type="text/css">
+    @font-face {
+        font-family: "UKIJ Tor";
+        src: url('ugFont/UKIJTor.eot');
+        src: url('ugFont/UKIJTor.eot?#iefix') format('embedded-opentype'),
+        url('ugFont/UKIJTor.woff') format('woff'),
+        url('ugFont/UKIJTor.ttf') format('truetype'),
+        url('ugFont/UKIJTor.svg#UKIJ Tor') format('svg');
+    }
+
+    body {
+        font-family: UKIJ Tor;
+        margin: 0;
+        padding: 0;
+    }
+    #list{
+        margin-top: 55px;
+    }
+    #list table,
+    tr {
+        width: 100%;
+        text-align: center;
+        border-collapse: collapse;
+    }
+
+    #list td img {
+        width: 20px;
+    }
+
+    #list td:nth-child(2) {
+        padding-left: 10%;
+        text-align: left;
+    }
+
+    #list tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+
+    #list tr:nth-child(5n-3) {
+        background-color: #cccccc;
+    }
+
+    #fixedRow {
+        top:0;
+        height: 100px;
+        position: fixed;
+    }
+
+    .info {
+        margin: 0;
+        height: 50px;
+        text-align: center;
+        background-color: #66BB6A;
+        line-height: 50px;
+        color: white;
+        text-shadow: 1px;
+    }
+
+    #rowName {
+        height: 50px;
+        border: 1px solid transparent;
+        background-color: white;
+        -webkit-box-shadow: 0 2px 5px 0 rgba(140, 144, 155, .15);
+        -moz-box-shadow: 0 2px 5px 0 rgba(140, 144, 155, .15);
+        box-shadow: 0 2px 5px 0 rgba(140, 144, 155, .15);
+    }
+    </style>
 </head>
+
 <body>
-<h1>welcome to topbilge</h1>
+    <div id="fixedRow">
+        <div class="info" dir="rtl">2017-يىللىق ياۋروپا ئۇزغۇنلۇق مۇسابىقىسى نەتىجە جەدۋىلى
+        </div>
+        <table id="rowName">
+            <tr>
+                <th style="width: 25%">رەت تەرتىپى</th>
+                <th style="width: 25%">كوماندا ئىسمى</th>
+                <th style="width: 10%">مەيدان سانى</th>
+                <th style="width: 5%">يېڭىش</th>
+                <th style="width: 5%">تەڭلىشىش</th>
+                <th style="width: 10%">يېڭىلىش</th>
+                <th style="width: 15%">توپ يېيىش/كىرگۈزىش</th>
+                <th style="width: 5%">جۇغلانما نومۇرى</th>
+            </tr>
+        </table>
+    </div>
+    <table id="list">
+        <tr>
+            <th style="width: 25%">رەت تەرتىپى</th>
+            <th style="width: 25%">كوماندا ئىسمى</th>
+            <th style="width: 10%">مەيدان سانى</th>
+            <th style="width: 5%">يېڭىش</th>
+            <th style="width: 5%">تەڭلىشىش</th>
+            <th style="width: 10%">يېڭىلىش</th>
+            <th style="width: 15%">توپ يېيىش/كىرگۈزىش</th>
+            <th style="width: 5%">جۇغلانما نومۇرى</th>
+        </tr>
+    </table>
 </body>
+<script>
+$.ajax({
+    url: "https://dc.qiumibao.com/shuju/public/index.php?_url=/data/index&league=欧冠&tab=积分榜&year=2017",
+    type: "GET",
+    dataType: 'JSON',
+    success: function(data) {
+        for (var i = 0; i < data.data.length; i++) {
+            var tr = document.createElement("tr");
+            var td = document.createElement("td");
+            td.setAttribute("colspan", 8);
+            td.innerHTML = "گۇرۇپ " + String.fromCharCode(65 + i);
+            tr.appendChild(td);
+            $("#list").append(tr);
+            console.log();
+            for (var j = 0; j < data.data[i].list.length; j++) {
+                var kur = document.createElement('tr');
+                var oneline = "<td>" + data.data[i].list[j].排名 + "</td>" +
+                    "<td><img src=" + data.data[i].list[j]["球队图标"] + ">" + data.data[i].list[j].球队 + "</td>" +
+                    "<td>" + data.data[i].list[j]["场次"] + "</td>" +
+                    "<td>" + data.data[i].list[j]["胜"] + "</td>" +
+                    "<td>" + data.data[i].list[j]["平"] + "</td>" +
+                    "<td>" + data.data[i].list[j]["负"] + "</td>" +
+                    "<td>" + data.data[i].list[j]["进/失球"] + "</td>" +
+                    "<td>" + data.data[i].list[j]["积分"] + "</td>";
+                kur.innerHTML = oneline;
+                $("#list").append(kur);
+            }
+        }
+    },
+    error: function(data) {
+        alert("error");
+    }
+
+});
+
+    $(document).ready(function() {
+        $(".info").gradientify({
+            gradients: [
+                { start: [49,76,172], stop: [242,159,191] },
+                { start: [255,103,69], stop: [240,154,241] },
+                { start: [33,229,241], stop: [235,236,117] }
+            ]
+        });
+    });
+</script>
+
 </html>
