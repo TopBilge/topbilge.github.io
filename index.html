@@ -9,7 +9,7 @@
         <meta name="wap-font-scale" content="no">
         <meta name="apple-mobile-web-app-capable" content="no" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <title>توپ-بىلگە</title>
+    <title>ئۇزغۇنلۇق·توپ-بىلگە</title>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
     <script src="jquery.gradientify.min.js"></script>
     <style type="text/css">
@@ -28,8 +28,8 @@
         padding: 0;
     }
     #list{
-        margin-top: 80px;
-        font-size: 0.2em;
+        margin-top: 60px;
+        font-size: 0.4em;
         border: none;
     }
     #list table,
@@ -51,7 +51,7 @@
     #list td:nth-child(2) {
         text-align: right;
         font-family: UKIJ Tor;
-        font-size: 0.3;
+        font-size: 0.5;
     }
 
     #list tr:nth-child(odd) {
@@ -174,7 +174,7 @@ $.ajax({
             for (var j = 0; j < data.data[i].list.length; j++) {
                 var kur = document.createElement('tr');
                 var oneline = "<td>" + data.data[i].list[j].排名 + "</td>" +
-                    "<td>"+cnm[data.data[i].list[j].球队]+"<img src=" + data.data[i].list[j]["球队图标"] + "></td>" +
+                    "<td>"+cnm[data.data[i].list[j].球队] +" <img src=" + data.data[i].list[j]["球队图标"] + "></td>" +
                     "<td>" + data.data[i].list[j]["场次"] + "</td>" +
                     "<td>" + data.data[i].list[j]["胜"] + "</td>" +
                     "<td>" + data.data[i].list[j]["平"] + "</td>" +
