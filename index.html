@@ -28,8 +28,9 @@
         padding: 0;
     }
     #list{
-        margin-top: 55px;
+        margin-top: 80px;
         font-size: 0.2em;
+        border: none;
     }
     #list table,
     tr {
@@ -37,14 +38,18 @@
         text-align: center;
         border-collapse: collapse;
     }
-
+    #list th{
+        background-color: #f2f2f2;
+        color: #f2f2f2;
+        border-collapse: collapse;
+    }
     #list td img {
         width: 20px;
         vertical-align: middle;
     }
 
     #list td:nth-child(2) {
-        text-align: left;
+        text-align: right;
         font-family: UKIJ Tor;
         font-size: 0.3;
     }
@@ -105,7 +110,7 @@
         </table>
     </div>
     <table id="list">
-        <tr>
+        <tr id="th-list">
             <th style="width: 10%">رەت تەرتىپى</th>
             <th style="width: 40%">كوماندا ئىسمى</th>
             <th style="width: 10%">مەيدان سانى</th>
@@ -118,6 +123,41 @@
     </table>
 </body>
 <script>
+    var cnm={
+    曼联: "مانچېستېر",
+    巴塞尔: "بازېل",
+    中央陆军: "مەركىزىي قۇرۇقلۇق ئارمىيە",
+    本菲卡: "بېنفىكا",
+    巴黎圣曼: "پارىژ مۇقەددەس مەڭنەم",
+    拜仁: "بەيرىن",
+    凯尔特人: "كېلىتلىقلار",
+    安德莱: "ئاندرې-لېس",
+    切尔西: "چېلسى",
+    罗马: "رىم",
+    马德里竞技: "مادرىد رىقابەت",
+    卡拉巴赫: "كاراباخسكىي",
+    巴塞罗那: "بارسېلونا",
+    里斯本竞技: "لىسبون ماھارەت",
+    尤文图斯: "يۇۋېنتۇس",
+    奥林匹亚科斯: "ئولىمپىيە كوس",
+    塞维利亚: "سېۋېلىيە",
+    利物浦: "لىۋېرپول",
+    莫斯科斯巴达: "موسكۋا سىپارتاك",
+    马里博尔: "مارىبور",
+    曼城: "مەنچىڭ",
+    顿涅茨克矿工: "دونتسىك كان ئىشچىسى",
+    那不勒斯: "ناپلېس",
+    费耶诺德: "فېيېر نودى",
+    贝西克塔斯: "بېسۋىك تاس",
+    波尔图: "پورتو",
+    莱红牛: "لېس قىزىل كالىسى",
+    摩纳哥: "موناكو",
+    热刺: "رىسى",
+    皇马: "خان مادرىد",
+    多特蒙德: "دورتمۇند",
+    希腊人: "گرېكلەر"
+};
+
 $.ajax({
     url: "https://dc.qiumibao.com/shuju/public/index.php?_url=/data/index&league=欧冠&tab=积分榜&year=2017",
     type: "GET",
@@ -134,7 +174,7 @@ $.ajax({
             for (var j = 0; j < data.data[i].list.length; j++) {
                 var kur = document.createElement('tr');
                 var oneline = "<td>" + data.data[i].list[j].排名 + "</td>" +
-                    "<td><img src=" + data.data[i].list[j]["球队图标"] + ">" + data.data[i].list[j].球队 + "</td>" +
+                    "<td>"+cnm[data.data[i].list[j].球队]+"<img src=" + data.data[i].list[j]["球队图标"] + "></td>" +
                     "<td>" + data.data[i].list[j]["场次"] + "</td>" +
                     "<td>" + data.data[i].list[j]["胜"] + "</td>" +
                     "<td>" + data.data[i].list[j]["平"] + "</td>" +
